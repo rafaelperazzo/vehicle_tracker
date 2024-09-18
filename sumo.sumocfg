@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on qua 18 set 2024 14:24:59 by Eclipse SUMO GUI Version 1.4.0
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/perazzo/Projetos/rastrear_veiculo/network.net.xml"/>
+        <route-files value="/home/perazzo/Projetos/rastrear_veiculo/demanda.rou.xml"/>
+    </input>
+
+    <gui_only>
+        <registry-viewport value="true"/>
+    </gui_only>
+
+</configuration>
