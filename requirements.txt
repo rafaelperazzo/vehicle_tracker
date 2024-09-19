@@ -1,4 +1,4 @@
-cmake
-dlib
-numpy
-opencv-python
+cmake==3.30.3
+dlib==19.24.6
+numpy==1.24.4
+opencv-python==4.10.0.84
