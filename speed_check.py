@@ -3,12 +3,13 @@ import dlib
 import time
 
 carCascade = cv2.CascadeClassifier('myhaar.xml')
+#carCascade = cv2.CascadeClassifier('./xml/two_wheeler.xml')
 video = cv2.VideoCapture('cars.mp4')
 
 WIDTH = 1280
 HEIGHT = 720
-CUT_IMAGE = 3 #Quanto menor, menos corta a imagem. Ex: 2 corta pela metade. 3 corta 1/3 da imagem.
-CUT_IMAGE_V = 5
+CUT_IMAGE = 1 #Quanto menor, menos corta a imagem. Ex: 2 corta pela metade. 3 corta 1/3 da imagem.
+CUT_IMAGE_V = 1
 
 def trackMultipleObjects():
 	rectangleColor = (0, 255, 0)
@@ -60,10 +61,6 @@ def trackMultipleObjects():
 		if not (frameCounter % 10):
 			gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 			cars = carCascade.detectMultiScale(gray, 1.1, 13, 18, (24, 24))
-			try:
-				print(cars.shape[0])
-			except:
-				print("No cars detected")
 			for (_x, _y, _w, _h) in cars:
 				x = int(_x)
 				y = int(_y)
@@ -120,7 +117,8 @@ def trackMultipleObjects():
 		if not (end_time == start_time):
 			fps = 1.0/(end_time - start_time)
 		
-		for i in carLocation1.keys():	
+		for i in carLocation1.keys():
+			
 			[x1, y1, w1, h1] = carLocation1[i]
 			[x2, y2, w2, h2] = carLocation2[i]
 			
@@ -132,7 +130,7 @@ def trackMultipleObjects():
 					cv2.rectangle(resultImage, (x2, y2), (x2 + w2, y2 + h2), rectangleColor, 4)
 					cv2.putText(resultImage, "Subindo...", (int(x1 + w1/2), int(y1-5)),cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), 2)
 				else:
-					cv2.circle(resultImage, (x2+w2//2,y2+h2//2), 50, circleColor, 4)
+					cv2.circle(resultImage, (x2+w2//2,y2+h2//2), 20, circleColor, 4)
 					cv2.putText(resultImage, "Descendo...", (int(x1 + w1/2), int(y1-5)),cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 0, 0), 2)
 		cv2.imshow('result', resultImage)
 

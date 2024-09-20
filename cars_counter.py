@@ -74,7 +74,6 @@ while ret:
             if (line_height + offset) > y > (line_height - offset):
                 cars=cars+1
                 matches.remove((x,y))
-                print(cars)
     cv2.putText(frame1, "Total Vehicles Detected: " + str(cars), (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 1,
                 (0, 170, 0), 2)
     #cv2.drawContours(frame1,contours,-1,(0,0,255),2)
@@ -90,3 +89,4 @@ while ret:
 #print(matches)
 cv2.destroyAllWindows()
 cap.release()
+print(cars)
