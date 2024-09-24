@@ -6,8 +6,8 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="/home/perazzo/Projetos/rastrear_veiculo/network.net.xml"/>
-        <route-files value="/home/perazzo/Projetos/rastrear_veiculo/demanda.rou.xml"/>
+        <net-file value="/home/perazzo/Projetos/vehicle_tracker/network.net.xml"/>
+        <route-files value="/home/perazzo/Projetos/vehicle_tracker/demanda.rou.xml"/>
     </input>
 
     <gui_only>

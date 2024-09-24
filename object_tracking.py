@@ -24,7 +24,7 @@ except Exception as e:
 # Initialize Object Detection
 od = ObjectDetection()
 
-cap = cv2.VideoCapture("cars.mp4")
+cap = cv2.VideoCapture("simulador.mp4")
 
 # Initialize count
 count = 0
