@@ -8,10 +8,18 @@ import cv2
 import numpy as np
 from object_detection import ObjectDetection
 import math
+import configparser
 
-CUT_IMAGE = 3 #Quanto menor, menos corta a imagem. Ex: 2 corta pela metade. 3 corta 1/3 da imagem.
-CUT_IMAGE_V = 1
-DISTANCIA = 80
+config = configparser.ConfigParser()
+try:
+    config.read('config.ini')
+    CUT_IMAGE = int(config['DEFAULT']['CUT_IMAGE'])
+    CUT_IMAGE_V = int(config['DEFAULT']['CUT_IMAGE_V'])
+    DISTANCIA = int(config['DEFAULT']['DISTANCIA'])
+except Exception as e:
+    CUT_IMAGE = 3 #Quanto menor, menos corta a imagem. Ex: 2 corta pela metade. 3 corta 1/3 da imagem.
+    CUT_IMAGE_V = 1
+    DISTANCIA = 80  
 
 # Initialize Object Detection
 od = ObjectDetection()

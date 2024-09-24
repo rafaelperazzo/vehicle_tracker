@@ -2,3 +2,4 @@ cmake
 dlib
 numpy
 opencv-python
+configparser
