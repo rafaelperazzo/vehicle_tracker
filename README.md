@@ -10,4 +10,5 @@ pip3 install virtualenv
 virtualenv python
 source python/bin/activate
 pip install -r requirements.txt
+wget -O dnn_model/yolov4.weights https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights&ved=2ahUKEwj9mbKrwtuIAxWvqZUCHVlXPE8QFnoECBQQAQ&usg=AOvVaw30if4joxtTaS8DAh12vYQ4
 ```
