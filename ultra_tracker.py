@@ -12,7 +12,7 @@ track_history = defaultdict(lambda: [])
 model = YOLO("yolov8n-seg.pt")
 
 # Open the video file
-cap = cv2.VideoCapture("simulador.mp4")
+cap = cv2.VideoCapture("cars2.mp4")
 
 # Retrieve video properties: width, height, and frames per second
 w, h, fps = (int(cap.get(x)) for x in (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT, cv2.CAP_PROP_FPS))

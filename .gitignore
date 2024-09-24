@@ -164,3 +164,4 @@ python312/
 dnn_model/yolov4.weights
 *.weights
 python310/
+*.avi
