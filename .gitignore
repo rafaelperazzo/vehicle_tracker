@@ -161,4 +161,5 @@ cython_debug/
 python38/
 .idea*/
 python312/
-dnn_model/*.weights
+dnn_model/yolov4.weights
+*.weights

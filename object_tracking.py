@@ -11,8 +11,13 @@ import math
 
 # Initialize Object Detection
 od = ObjectDetection()
+<<<<<<< HEAD
 
 cap = cv2.VideoCapture("los_angeles.mp4")
+=======
+print(od.classes)
+cap = cv2.VideoCapture("cars2.mp4")
+>>>>>>> e14c08a... agora sim
 
 # Initialize count
 count = 0
