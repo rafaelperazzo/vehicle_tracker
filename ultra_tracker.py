@@ -5,6 +5,19 @@ import cv2
 from ultralytics import YOLO
 from ultralytics.utils.plotting import Annotator, colors
 
+import configparser
+
+config = configparser.ConfigParser()
+try:
+    config.read('config.ini')
+    CUT_IMAGE = int(config['DEFAULT']['CUT_IMAGE'])
+    CUT_IMAGE_V = int(config['DEFAULT']['CUT_IMAGE_V'])
+    DISTANCIA = int(config['DEFAULT']['DISTANCIA'])
+except Exception as e:
+    CUT_IMAGE = 3 #Quanto menor, menos corta a imagem. Ex: 2 corta pela metade. 3 corta 1/3 da imagem.
+    CUT_IMAGE_V = 1
+    DISTANCIA = 80 
+
 # Dictionary to store tracking history with default empty lists
 track_history = defaultdict(lambda: [])
 
@@ -32,17 +45,29 @@ while True:
 
     # Perform object tracking on the current frame
     results = model.track(im0, persist=True)
-
+    
     # Check if tracking IDs and masks are present in the results
     if results[0].boxes.id is not None and results[0].masks is not None:
         # Extract masks and tracking IDs
         masks = results[0].masks.xy
         track_ids = results[0].boxes.id.int().cpu().tolist()
-
+        boxes = results[0].boxes.xywh.cpu()
+        names = results[0].names
+        classes = results[0].boxes.cls.int().cpu().tolist()
         # Annotate each mask with its corresponding tracking ID and color
-        for mask, track_id in zip(masks, track_ids):
-            annotator.seg_bbox(mask=mask, mask_color=colors(track_id, True), track_label=str(track_id))
-
+        for mask, track_id,box,classe in zip(masks, track_ids,boxes,classes):
+            x,y,w,h = box
+            track = track_history[track_id]
+            track.append((float(x), float(y)))
+            #print(names[classe])
+            if (len(track) > 1): #Verificando a direção do veículo
+                lasts = track[-2:]
+                if (len(lasts) > 1):
+                    x1, y1 = lasts[-2]
+                    x2, y2 = lasts[-1]
+                    if (y1-y2 <= 0):
+                        annotator.seg_bbox(mask=mask, mask_color=colors(track_id, True), label=str(track_id))
+            
     # Write the annotated frame to the output video
     out.write(im0)
     # Display the annotated frame
