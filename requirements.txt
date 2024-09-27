@@ -1,5 +1,2 @@
-cmake
-dlib
-numpy
-opencv-python
+ultralytics
 configparser
